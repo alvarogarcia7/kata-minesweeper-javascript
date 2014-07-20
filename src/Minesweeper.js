@@ -2,7 +2,7 @@ var Minesweeper = function(){
 	
 }
 
-Minesweeper.prototype.sweep = function(field) {
+Minesweeper.prototype.sweep = function(/*Array<String>*/ field) {
 	if(!field || field.length === 0){
 		return field;
 	}
@@ -13,7 +13,7 @@ Minesweeper.prototype.sweep = function(field) {
 		sweptField = [];
 
 	for(row = 0; row < field.length; row++){
-		field[row] = field[row].replace(/\./g, 0).split('');
+		field[row] = new Row(field[row]).initialize();
 	}
 
 	for(row = 0; row < field.length; row++){
