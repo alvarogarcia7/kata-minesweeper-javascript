@@ -31,6 +31,6 @@ Row.prototype.increaseBombsAt = function(column) {
 	this.contents[column].increaseBombs();
 };
 
-Row.prototype.length = function() {
+Row.prototype.columns = function() {
 	return this.contents.length;
 };

@@ -19,7 +19,7 @@ Minesweeper.prototype.sweep = function(/*Array<String>*/ field) {
 	for(row = 0; row < field.length; row++){
 		currentRow = field[row];
 
-		for(column = 0; column < currentRow.length(); column++){
+		for(column = 0; column < currentRow.columns(); column++){
 			if(currentRow.hasBombAt(column)){
 				this.getAdjacentIndices(field, row, column)
 					.filter(function(pair){
@@ -42,7 +42,7 @@ Minesweeper.prototype.sweep = function(/*Array<String>*/ field) {
 
 Minesweeper.prototype.getAdjacentIndices = function(field, row, column) {
 	var adjacentIndices = [];
-	if (column+1 < field[row].length()){
+	if (column+1 < field[row].columns()){
 		adjacentIndices.push([row, column + 1]);
 	}
 	if (column-1 >= 0){
