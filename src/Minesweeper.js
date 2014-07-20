@@ -13,8 +13,7 @@ Minesweeper.prototype.sweep = function(field) {
 
 	field[0] = field[0].replace(/\./g,'0');
 	var current = field[0].split(''),
-		i,
-		adjacentIndices;
+		i;
 
 	for(i = 0; i < current.length; i++){
 		if(current[i] === "*"){
