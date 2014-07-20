@@ -1,0 +1,3 @@
+var Minesweeper = function(){
+	
+}
