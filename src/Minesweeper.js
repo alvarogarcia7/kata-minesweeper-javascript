@@ -7,10 +7,20 @@ Minesweeper.prototype.sweep = function(field) {
 		return field;
 	}
 
-	field[0] = field[0].replace('.','1');
-	if(field[0] === ("*1*")){
-		field[0] = "*2*";
+	field[0] = field[0].replace('.','0');
+	var current = field[0].split(''),
+		i;
+
+	for(i = 0; i < current.length; i++){
+		if(current[i] === "*"){
+			if(i+1 < current.length){
+				current[i+1]++;
+			}
+			if(i-1 >= 0){
+				current[i-1]++;
+			}
+		}
 	}
 
-	return field;
+	return [current.join('')];
 };
