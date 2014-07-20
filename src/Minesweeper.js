@@ -18,11 +18,13 @@ Minesweeper.prototype.sweep = function(field) {
 
 	for(i = 0; i < current.length; i++){
 		if(current[i] === "*"){
-			this.getAdjacentIndices(current, i).forEach(function(currentIndex){
-				if(current[currentIndex] !== '*'){
+			this.getAdjacentIndices(current, i)
+				.filter(function(currentIndex){
+					return current[currentIndex] !== '*'
+				})
+				.forEach(function(currentIndex){
 					current[currentIndex] ++;
-				}
-			});
+				});
 		}
 	}
 
