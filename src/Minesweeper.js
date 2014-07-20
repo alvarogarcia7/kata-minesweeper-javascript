@@ -13,18 +13,30 @@ Minesweeper.prototype.sweep = function(field) {
 
 	field[0] = field[0].replace(/\./g,'0');
 	var current = field[0].split(''),
-		i;
+		i,
+		adjacentIndices;
 
 	for(i = 0; i < current.length; i++){
 		if(current[i] === "*"){
-			if(i+1 < current.length && current[i+1] !== '*'){
-				current[i+1]++;
-			}
-			if(i-1 >= 0 && current[i-1] !== '*'){
-				current[i-1]++;
-			}
+			adjacentIndices = this.getAdjacentIndices(current, i);
+			adjacentIndices.forEach(function(currentIndex){
+				if(current[currentIndex] !== '*'){
+					current[currentIndex] ++;
+				}
+			});
 		}
 	}
 
 	return [current.join('')];
+};
+
+Minesweeper.prototype.getAdjacentIndices = function(row, index) {
+	var adjacentIndices = [];
+	if (index+1 < row.length){
+		adjacentIndices.push(index + 1);
+	}
+	if (index-1 >= 0){
+		adjacentIndices.push(index - 1);
+	}
+	return adjacentIndices;
 };
