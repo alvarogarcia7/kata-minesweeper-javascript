@@ -22,7 +22,7 @@ describe("minesweeper", function(){
 	});
 
 	it("should process a one-dimensional array with ovelapping bomb radius", function(){
-		expect(sut.sweep(['*.*'])).toEqual(['*2*']);
+		expect(sut.sweep(['*.*.'])).toEqual(['*2*1']);
 	});
 
 	it("should process a one-dimensional array with bombs in contact", function(){

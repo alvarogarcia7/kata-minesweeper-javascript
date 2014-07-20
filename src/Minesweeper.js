@@ -7,7 +7,7 @@ Minesweeper.prototype.sweep = function(field) {
 		return field;
 	}
 
-	field[0] = field[0].replace('.','0');
+	field[0] = field[0].replace(/\./g,'0');
 	var current = field[0].split(''),
 		i;
 
