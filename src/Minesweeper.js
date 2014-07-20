@@ -12,22 +12,27 @@ Minesweeper.prototype.sweep = function(field) {
 	}
 
 	field[0] = field[0].replace(/\./g,'0');
-	var current = field[0].split(''),
-		i;
+	var currentRow,
+		column,
+		row;
 
-	for(i = 0; i < current.length; i++){
-		if(current[i] === "*"){
-			this.getAdjacentIndices(current, i)
-				.filter(function(currentIndex){
-					return current[currentIndex] !== '*'
-				})
-				.forEach(function(currentIndex){
-					current[currentIndex] ++;
-				});
+	for(row = 0; row < field.length; row++){
+		currentRow = field[row].split('')
+
+		for(column = 0; column < currentRow.length; column++){
+			if(currentRow[column] === "*"){
+				this.getAdjacentIndices(currentRow, column)
+					.filter(function(currentIndex){
+						return currentRow[currentIndex] !== '*'
+					})
+					.forEach(function(currentIndex){
+						currentRow[currentIndex] ++;
+					});
+			}
 		}
 	}
 
-	return [current.join('')];
+	return [currentRow.join('')];
 };
 
 Minesweeper.prototype.getAdjacentIndices = function(row, index) {
