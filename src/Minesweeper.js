@@ -7,21 +7,20 @@ Minesweeper.prototype.sweep = function(field) {
 		return field;
 	}
 
-	if(field.length === 2){
-		return ['*','1'];
-	}
-
-	field[0] = field[0].replace(/\./g,'0');
 	var currentRow,
 		column,
-		row;
+		row,
+		sweptField = [];
 
 	for(row = 0; row < field.length; row++){
-		field[row] = field[row].split('');
+		field[row] = field[row].replace(/\./g, 0).split('');
+	}
+
+	for(row = 0; row < field.length; row++){
 		currentRow = field[row];
 
 		for(column = 0; column < currentRow.length; column++){
-			if(field[row][column] === "*"){
+			if(currentRow[column] === "*"){
 				this.getAdjacentIndices(field, row, column)
 					.filter(function(pair){
 						return field[pair[0]][pair[1]] !== '*'
@@ -31,9 +30,14 @@ Minesweeper.prototype.sweep = function(field) {
 					});
 			}
 		}
+
 	}
 
-	return [currentRow.join('')];
+	for(row = 0; row < field.length; row++){
+		sweptField.push(field[row].join(''));
+	}
+
+	return sweptField;
 };
 
 Minesweeper.prototype.getAdjacentIndices = function(field, row, column) {
@@ -43,6 +47,12 @@ Minesweeper.prototype.getAdjacentIndices = function(field, row, column) {
 	}
 	if (column-1 >= 0){
 		adjacentIndices.push([row, column - 1]);
+	}
+	if (row + 1 < field.length){
+		adjacentIndices.push([row + 1, column]);
+	}
+	if (row - 1 >= 0){
+		adjacentIndices.push([row - 1, column])
 	}
 	return adjacentIndices;
 };
