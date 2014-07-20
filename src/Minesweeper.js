@@ -18,8 +18,7 @@ Minesweeper.prototype.sweep = function(field) {
 
 	for(i = 0; i < current.length; i++){
 		if(current[i] === "*"){
-			adjacentIndices = this.getAdjacentIndices(current, i);
-			adjacentIndices.forEach(function(currentIndex){
+			this.getAdjacentIndices(current, i).forEach(function(currentIndex){
 				if(current[currentIndex] !== '*'){
 					current[currentIndex] ++;
 				}
