@@ -13,10 +13,10 @@ Minesweeper.prototype.sweep = function(field) {
 
 	for(i = 0; i < current.length; i++){
 		if(current[i] === "*"){
-			if(i+1 < current.length){
+			if(i+1 < current.length && current[i+1] !== '*'){
 				current[i+1]++;
 			}
-			if(i-1 >= 0){
+			if(i-1 >= 0 && current[i-1] !== '*'){
 				current[i-1]++;
 			}
 		}
