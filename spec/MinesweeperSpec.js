@@ -12,4 +12,8 @@ describe("minesweeper", function(){
 	it("should process a zero-dimension array", function(){
 		expect(sut.sweep([])).toEqual([]);
 	});
+
+	it("should process a one-dimensional array with just one bomb", function(){
+		expect(sut.sweep(['*'])).toEqual(['*']);
+	});
 });

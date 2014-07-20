@@ -3,5 +3,5 @@ var Minesweeper = function(){
 }
 
 Minesweeper.prototype.sweep = function(field) {
-	return [];
+	return field;
 };
