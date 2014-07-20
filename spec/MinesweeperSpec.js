@@ -36,4 +36,15 @@ describe("minesweeper", function(){
 	
 	});
 
+	describe("two-dimensions", function(){
+		it("should detect interaction between different rows", function(){
+			expect(sut.sweep(
+				['*',
+				 '.']
+				)).toEqual(
+				['*',
+				 '1']
+				);
+		});
+	});
 });
