@@ -33,18 +33,51 @@ Minefield.prototype.toString = function() {
 };
 
 Minefield.prototype.getAdjacentIndices = function(row, column) {
-	var adjacentIndices = [];
+	var adjacentIndices = [],
+		isOk = {};
 	if (column+1 < this.rowAt(row).columns()){
-		adjacentIndices.push([row, column + 1]);
+		isOk['below'] = true;
 	}
 	if (column-1 >= 0){
-		adjacentIndices.push([row, column - 1]);
+		isOk['top'] = true;
 	}
 	if (row + 1 < this.rows()){
-		adjacentIndices.push([row + 1, column]);
+		isOk['right'] = true;
 	}
 	if (row - 1 >= 0){
+		isOk['left'] = true;
+	}
+
+	if (isOk.below){
+		adjacentIndices.push([row, column + 1]);
+		
+		if (isOk.right){
+			adjacentIndices.push([row + 1, column + 1]);
+		}
+		
+		if (isOk.left){
+			adjacentIndices.push([row - 1, column + 1]);
+		}
+	}
+	if (isOk.top){
+		adjacentIndices.push([row, column - 1]);
+
+
+		if (isOk.right){
+			adjacentIndices.push([row + 1, column - 1]);
+		}
+		
+		if (isOk.left){
+			adjacentIndices.push([row - 1, column - 1]);
+		}
+
+	}
+	if (isOk.right){
+		adjacentIndices.push([row + 1, column]);
+	}
+	if (isOk.left){
 		adjacentIndices.push([row - 1, column])
 	}
+
 	return adjacentIndices;
 };
