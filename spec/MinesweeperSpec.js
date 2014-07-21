@@ -47,4 +47,32 @@ describe("minesweeper", function(){
 				);
 		});
 	});
+
+	describe("acceptance tests", function(){
+		it("acceptance number one", function(){
+			expect(sut.sweep(
+				['**...',
+				 '.....',
+				 '.*...']
+			)).toEqual(
+				['**100',
+				 '33200',
+				 '1*100']
+				);
+		});
+
+		it("acceptance number two", function(){
+			expect(sut.sweep(
+				['*...',
+				 '....',
+				 '.*..',
+				 '....']
+			)).toEqual(
+				['*100',
+				 '2210',
+				 '1*10',
+				 '1110']
+				);
+		});
+	});
 });
