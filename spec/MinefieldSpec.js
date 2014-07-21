@@ -10,7 +10,7 @@ describe("Minefield", function(){
 		expect(result.sort()).toEqual(expected.sort());
 	}
 	it("should find all the adjacent cells", function(){
-		var sut = new Minefield(["...", "...", "..."]);
+		var sut = new Minefield(["---", "...", "***"]);
 		var result = sut.getAdjacentIndices(1,1);
 		checkAllAdjacent(result);
 	});
